@@ -37,10 +37,8 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'customer_name' => 'required|string|max:255',
+            'customer_id' => 'required|exists:customers,id',
             'link' => 'required|url',
-            // 'transaction_date' => 'nullable|date',
-            // 'transaction_number' => 'required|string|unique:transaksis',
             'paket_id' => 'required|exists:pakets,id',
             'qty' => 'required|integer',
             'discount' => 'nullable|numeric|min:0|max:100',
@@ -86,10 +84,8 @@ class TransaksiController extends Controller
     public function update(Request $request, Transaksi $transaksi)
     {
         $validatedData = $request->validate([
-            'customer_name' => 'required|string|max:255',
+            'customer_id' => 'required|exists:customers,id',
             'link' => 'required|url',
-            // 'transaction_date' => 'nullable|date',
-            // 'transaction_number' => 'required|string|unique:transaksis,transaction_number,' . $transaksi->id,
             'paket_id' => 'required|exists:pakets,id',
             'qty' => 'required|integer',
             'discount' => 'nullable|numeric|min:0|max:100',

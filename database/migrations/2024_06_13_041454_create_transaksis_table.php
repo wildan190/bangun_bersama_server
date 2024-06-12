@@ -16,8 +16,7 @@ class CreateTransaksisTable extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_name');
-            $table->string('link');
+            $table->unsignedBigInteger('customer_id');
             $table->date('transaction_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('transaction_number')->unique()->default(DB::raw(random_int(10000000, 99999999)));
             $table->unsignedBigInteger('paket_id');
@@ -30,6 +29,7 @@ class CreateTransaksisTable extends Migration
 
             // Assuming there is a table 'pakets' for the paket_id foreign key
             $table->foreign('paket_id')->references('id')->on('pakets')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
         });
     }
 

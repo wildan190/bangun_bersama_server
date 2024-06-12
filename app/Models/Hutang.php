@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaksi extends Model
+class Hutang extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'customer_id',
-        'link',
         'transaction_date',
         'transaction_number',
         'paket_id',
@@ -19,18 +18,6 @@ class Transaksi extends Model
         'discount',
         'total_price',
         'bayar',
-        'kembalian',
+        'due_date_payment',
     ];
-
-    public function paket(){
-
-        $this->belongsTo(Paket::class);
-        
-    }
-
-    public function customer(){
-
-        $this->belongsTo(Customer::class);
-        
-    }
 }
